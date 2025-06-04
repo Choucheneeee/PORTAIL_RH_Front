@@ -53,7 +53,11 @@ export class LoginComponent {
     }
   }
   }
-
+  showPassword: boolean = false;
+  password: string = '';
+  togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+  }
   onSubmit() {
     this.isLoading = true;
   
