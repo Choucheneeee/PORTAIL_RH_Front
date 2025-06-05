@@ -48,7 +48,7 @@ export class NavbarComponent {
       });
   }
   profile(){
-    this.router.navigate(['rh/profile'])
+    this.router.navigate(['rh/myprofile'])
   }
   showNotification(message: string) {
     this.alertMessage = message;

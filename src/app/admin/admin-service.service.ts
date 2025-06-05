@@ -90,4 +90,13 @@ export class AdminServiceService {
     return this.http.put(`${this.apiUrl}/auth/logout`, {}, { headers });
   }
 
+  getLogs(): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.warn('Token not found');
+      return new Observable(); // Return an empty observable to avoid further errors
+    }
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.http.get(`${this.apiUrl}/admin/activite`, { headers });
+  }
 }
