@@ -44,11 +44,9 @@ export class CongeComponent implements OnInit {
     // Get the ID from route parameters
     this.route.params.subscribe(params => {
       this.congeId = params['id'];
-      console.log('ID:', this.congeId);
       
       // Get edit mode from query parameters
       this.route.queryParams.subscribe(queryParams => {
-        console.log('Mode:', queryParams['mode']);
         if (this.congeId && queryParams['mode'] === 'edit') {
           this.isEditMode = true;
           this.loadCongeDetails(this.congeId);
@@ -61,7 +59,6 @@ export class CongeComponent implements OnInit {
     this.isLoading = true;
     this.share.getCongeById(id).subscribe({
       next: (conge: any) => {
-        console.log('Conge details:', conge);
         this.leaveForm.patchValue({
           date_Debut: conge.date_Debut ? new Date(conge.date_Debut).toISOString().split('T')[0] : null,
           date_Fin: conge.date_Fin ? new Date(conge.date_Fin).toISOString().split('T')[0] : null,
@@ -92,7 +89,6 @@ export class CongeComponent implements OnInit {
     if (this.isEditMode && this.congeId) {
       this.congeObs = this.share.updateConge(this.congeId, this.leaveForm.value).subscribe({
         next: (response: any) => {
-          console.log(response);
           alert(response.message);
           this.isLoading = false;
           this.leaveForm.reset();

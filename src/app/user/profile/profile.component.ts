@@ -82,11 +82,9 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log('Initial allinfo:', this.allinfo);
     this.initializeForm();
     this.initializeImage();
     
-    console.log('Form initial values:', this.userForm.getRawValue());
   }
 
   ngAfterViewInit(): void {
@@ -357,9 +355,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     }
   
     // Log the form data to verify content
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
+    
   
     this.share.updateEmployee(this.allinfo._id, formData).subscribe({
       next: (response: any) => {
@@ -543,7 +539,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       }
     }
 
-    console.log("first", this.allinfo);
   }
 
   formatRIB() {
@@ -590,7 +585,6 @@ save() {
   
   // Get signature image in base64 format
   const signatureData = this.signaturePad.toDataURL('image/png');
-  console.log('Signature data:', signatureData);
   
   // Show loading indicator
   this.isLoading = true;

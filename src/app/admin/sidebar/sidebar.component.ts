@@ -75,7 +75,6 @@ export class SidebarComponent implements OnInit {
   logout() {
     try{
       this.logoutSubscription=this.share.logout().subscribe((res:any)=>{
-        console.log(res);
         this.logoutSubscription.unsubscribe();
         localStorage.removeItem('token');
       localStorage.removeItem('loggedInUserId');

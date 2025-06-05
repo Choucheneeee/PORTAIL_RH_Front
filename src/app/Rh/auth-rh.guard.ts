@@ -14,9 +14,7 @@ export class authRhGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    console.log("guard rh");
     if (!this.authService.isAuthenticated()) {
-      console.log("User is not authenticated rh");
       this.router.navigate(['/login']);
       return false;
     }

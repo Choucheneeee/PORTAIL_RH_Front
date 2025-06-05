@@ -80,7 +80,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   private updateImageUrl(newUrl: string) {
     this.imageUrl = newUrl ? `${environment.baseUrl}${newUrl}?t=${Date.now()}` : this.defaultAvatar;
     
-    console.log("Full image URL:", this.imageUrl);
 
     this.cdr.detectChanges();
   }
@@ -160,7 +159,6 @@ export class HomeComponent implements OnInit, OnDestroy {
         if (data) {
           this.user = data;
 
-          console.log("user", this.user);
           // Update infoItems with the new user data
           this.infoItems = {
             id: (this.user._id),

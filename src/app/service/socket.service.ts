@@ -69,7 +69,6 @@ export class SocketService {
       }})
 
      this.socket.on('disconnect', () => {
-      console.log('Disconnected from server');
       this.connectionEstablished = false;
     });
     

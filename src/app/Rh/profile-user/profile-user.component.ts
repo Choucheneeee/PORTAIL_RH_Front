@@ -92,7 +92,6 @@ async ngOnInit(): Promise<void> {
       this.isLoading = true;
       await this.share.getUserById(id).toPromise().then((data: any) => {
         this.allinfo = data;
-        console.log("Received user data:", this.allinfo);
         this.updateFormWithNewData();
         this.initializeImage();
       }).catch((err) => {
@@ -203,7 +202,6 @@ private updateFormWithNewData(): void {
 }
 
   private initializeImage(): void {
-      console.log("Image URL:", this.imageUrl);
     this.imageUrl = this.defaultAvatar;  // Default image
 
     if (this.allinfo.profileImage) {
@@ -267,7 +265,6 @@ uploadImage(): void {
     .subscribe({
       next: (res: any) => {
         this.imageUrl = `${this.baseUrl}${res.profileImage}?t=${Date.now()}`;
-        console.log("Image URL:", this.imageUrl);
         this.allinfo.profileImage = res.profileImage;
         this.selectedFile = null;
       },
@@ -275,7 +272,6 @@ uploadImage(): void {
         console.error('Image upload failed:', err);
         this.selectedFile = null;
         this.initializeImage();
-         console.log("Image URL:", this.imageUrl);
 
       }
     });
@@ -324,7 +320,6 @@ uploadImage(): void {
   this.checkFormValidity(); // Add this line for debugging
 
   if (!this.userForm.valid) {
-    console.log('Form is invalid:', this.userForm.errors);
     return;
   }
 
@@ -383,9 +378,7 @@ uploadImage(): void {
   }
 
   // Log formData content for debugging
-  formData.forEach((value, key) => {
-    console.log(`${key}: ${value}`);
-  });
+  
 
   // Call the service method to update user
   this.share.updateUser(this.allinfo._id, formData).subscribe({
@@ -556,7 +549,6 @@ private initializeForm(): void {
     }
   }
 
-  console.log("first",this.allinfo);
 }
 
 // Add new method for form subscriptions
@@ -680,7 +672,6 @@ private checkFormValidity(): void {
   Object.keys(this.userForm.controls).forEach(key => {
     const control = this.userForm.get(key);
     if (control?.errors) {
-      console.log(`Control ${key} errors:`, control.errors);
     }
   });
 }

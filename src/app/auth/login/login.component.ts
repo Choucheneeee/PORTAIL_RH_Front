@@ -71,7 +71,6 @@ export class LoginComponent {
 
         setTimeout(() => {
           this.isLoading = false;
-          console.log("data",data);
           const url=data.role=="rh"?'/rh': data.role=="admin"?'/admin':'/collaborateur';
           if(data.role=="rh"){
             this.router.navigate([url], { state: { welcomeMessage: `Welcome back Rh, ${data.name}. We're glad to have you with us!` } });

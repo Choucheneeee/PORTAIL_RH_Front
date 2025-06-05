@@ -111,7 +111,6 @@ export class RequestComponent implements OnInit, OnChanges, OnDestroy {
         this.document = data;
         this.filterRequests(); // Apply initial filtering
         this.isLoading = false;
-        console.log("Loaded requests:", this.document);
       },
       error: (error) => {
         this.isLoading = false;
@@ -184,7 +183,6 @@ export class RequestComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     this.filteredRequests = filtered;
-    console.log("this.filteredRequests", this.filteredRequests);
   }
 
   sortKey: keyof any = 'createdAt';

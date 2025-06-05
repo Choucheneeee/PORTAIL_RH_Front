@@ -49,11 +49,9 @@ export class FormationComponent implements OnInit {
     // Get the ID from route parameters instead of query parameters
     this.route.params.subscribe(params => {
       this.formationId = params['id'];
-      console.log('ID:', this.formationId);
       
       // Get edit mode from query parameters
       this.route.queryParams.subscribe(queryParams => {
-        console.log('Mode:', queryParams['mode']);
         if (this.formationId && queryParams['mode'] === 'edit') {
           this.isEditMode = true;
           this.loadFormationDetails(this.formationId);
@@ -70,8 +68,6 @@ export class FormationComponent implements OnInit {
     this.isLoading = true;
     this.share.getFormationById(id).subscribe({
       next: (formation: any) => {
-        console.log('Formation details:', formation);
-        console.log('Formation details111 :', formation.formation );
         this.formationRequest = { 
           title: formation.formation.titre,
           type: formation.formation.type,
@@ -81,7 +77,6 @@ export class FormationComponent implements OnInit {
           organisme: formation.formation.organisme,    
           cout: formation.formation.cout,
         };  
-        console.log('Formation details222 :', this.formationRequest);
         this.isLoading = false;
       },
       error: (error) => {

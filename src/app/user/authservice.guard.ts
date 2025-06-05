@@ -8,7 +8,6 @@ export class AuthService {
   constructor() {}
 
   isAuthenticated(): boolean {
-    console.log("isAuthenticated");
 
     if (typeof window !== 'undefined' && typeof window.localStorage !== 'undefined') {
       return !!localStorage.getItem('token'); 

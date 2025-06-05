@@ -180,14 +180,12 @@ get filteredMessages(): Message[] {
   fetchUsers(): void {
     this.userSubscription = this.share.getUsersChat().subscribe({
       next: (data: any) => {
-        console.log("data", data);
         this.users = [
           ...data.collaborator.map((u: any) => this.mapUser(u)),
           ...data.rh.map((u: any) => this.mapUser(u))
 
           
         ];
-        console.log("first",this.users)
         this.socket.requestOnlineUsers();
 
       },
@@ -305,7 +303,6 @@ get filteredMessages(): Message[] {
           message:mes ,
           timestamp: new Date().toISOString()
         });
-        console.log('Message sent successfully');
         const sub = this.share.sentnotif(mes, this.selectedUser!._id).subscribe();
 
       },

@@ -51,7 +51,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private fetchUserData(): void {
     this.userobserv = this.share.getUsers().subscribe(
       (data: MyData) => {
-        console.log("dataaa",data)
         this.Nbcollaborators = data.Numbercollaborators;
         this.request = data.request;
         this.collaborator = data.collaborator;

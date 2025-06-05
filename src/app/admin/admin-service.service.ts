@@ -30,7 +30,6 @@ export class AdminServiceService {
     return this.http.get(`${this.apiUrl}/admin/dashData`, { headers });
   }
   updateUserRole(userId: string, newRole: string): Observable<any> {
-    console.log("user", userId);
     const token = localStorage.getItem('token');
     if (!token) {
       console.warn('Token not found');

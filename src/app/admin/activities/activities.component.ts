@@ -177,7 +177,6 @@ export class ActivitiesComponent implements OnInit {
   }
 
   exportLogs(): void {
-    console.log('Export functionality mocked');
     // Add CSV export logic here if needed
   }
 

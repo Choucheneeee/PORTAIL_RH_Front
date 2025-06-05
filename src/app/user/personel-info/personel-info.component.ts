@@ -83,8 +83,6 @@ export class PersonelInfoComponent implements OnChanges {
     if (!this.user.professionalInfo?.department) {
       missingFields.push('Département');
     }
-      console.log("contacttype",isStageContract)
-    console.log("contr", this.user.financialInfo?.contractType)
     if (!isStageContract) {
       if (!this.user?.financialInfo?.RIB) {
         missingFields.push(' RIB  bancaire');
@@ -240,9 +238,7 @@ export class PersonelInfoComponent implements OnChanges {
     const completedFields = validFields.length;
     const totalRequiredFields = definedRequiredFields.length;
     
-    console.log("champs complétés", completedFields);
-    console.log("champs requis", totalRequiredFields);
-    console.log("liste des champs requis", definedRequiredFields);
+    
     
     // Si tous les champs définis sont remplis, le profil est complet à 100%
     if (completedFields >= totalRequiredFields) {

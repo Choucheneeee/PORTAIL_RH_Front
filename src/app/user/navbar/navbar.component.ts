@@ -54,7 +54,6 @@ export class NavbarComponent implements OnInit {
     this.notifSubscription = this.socketService
       .on('notif')
       .subscribe((data) => {
-        console.log(data.message);
         this.notifs.unshift(data.message);
         this.showNotification(data.message);
         this.playNotificationSound();
@@ -129,7 +128,6 @@ export class NavbarComponent implements OnInit {
   logout() {
     try{
       this.logoutSubscription=this.share.logout().subscribe((res:any)=>{
-        console.log(res);
         this.logoutSubscription.unsubscribe();
         localStorage.removeItem('token');
       localStorage.removeItem('loggedInUserId');

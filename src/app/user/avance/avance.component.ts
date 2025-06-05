@@ -43,11 +43,9 @@ export class AvanceComponent implements OnInit {
     // Get the ID from route parameters
     this.route.params.subscribe(params => {
       this.avanceId = params['id'];
-      console.log('ID:', this.avanceId);
       
       // Get edit mode from query parameters
       this.route.queryParams.subscribe(queryParams => {
-        console.log('Mode:', queryParams['mode']);
         if (this.avanceId && queryParams['mode'] === 'edit') {
           this.isEditMode = true;
           this.loadAvanceDetails(this.avanceId);
@@ -65,7 +63,6 @@ export class AvanceComponent implements OnInit {
     this.isLoading = true;
     this.share.getAvanceById(id).subscribe({
       next: (avance: any) => {
-        console.log('Avance details:', avance);
         this.setRequestType(avance.type);
         this.avanceForm.patchValue({  
           requestType: avance.type,
@@ -103,7 +100,6 @@ export class AvanceComponent implements OnInit {
     if (this.avanceForm.valid) {
       this.isSubmitting = true;
       this.isLoading = true;
-      console.log('Form submitted:', this.avanceForm.value);
 
       if (this.isEditMode && this.avanceId) {
         this.congeObs = this.share.updateAvance(this.avanceId, this.avanceForm.value).subscribe({

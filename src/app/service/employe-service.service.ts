@@ -27,7 +27,6 @@ export class EmployeServiceService {
   constructor(private http: HttpClient) {}
 
   addNewStudent(profile: any): Observable<any> {
-    console.log("profile", profile);
     return this.http.post(`${this.apiUrl}/auth/register`, profile);
   }
   getFormationById(id: string): Observable<any> {
@@ -54,7 +53,6 @@ export class EmployeServiceService {
       console.warn('Token not found');
       return of(null); // Prevent app crash
     }   
-    console.log("form", form);
     const headers = new HttpHeaders().set('Authorization', `${token}`);
     return this.http.put(`${this.apiUrl}/conge/update/${id}`, form, { headers });
   }
@@ -73,7 +71,6 @@ export class EmployeServiceService {
       console.warn('Token not found');
       return of(null); // Prevent app crash
     }
-    console.log("form", form);
     const headers = new HttpHeaders().set('Authorization', `${token}`);
     return this.http.put(`${this.apiUrl}/document/update/${id}`, form, { headers });
   }
@@ -83,7 +80,6 @@ export class EmployeServiceService {
       console.warn('Token not found');
       return of(null); // Prevent app crash
     }
-    console.log("id", id);
     const headers = new HttpHeaders().set('Authorization', `${token}`);
     return this.http.get(`${this.apiUrl}/document/get/${id}`, { headers });  
     
@@ -94,7 +90,6 @@ export class EmployeServiceService {
       console.warn('Token not found');
       return of(null); // Prevent app crash
     }   
-    console.log("form", form);  
     const headers = new HttpHeaders().set('Authorization', `${token}`);
     return this.http.put(`${this.apiUrl}/avance/update/${id}`, form, { headers });
   }
@@ -132,7 +127,6 @@ export class EmployeServiceService {
       console.warn('Token not found');
       return of(null); // Prevent app crash
     }
-    console.log("lyyyy signaaa 2 ",signature)
     const headers = new HttpHeaders().set('Authorization', `${token}`);
     return this.http.post(`${this.apiUrl}/user/addsignature`, {signature} ,{ headers });
   }

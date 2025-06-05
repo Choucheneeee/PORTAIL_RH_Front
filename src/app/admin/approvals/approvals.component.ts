@@ -122,7 +122,7 @@ showNotification(message: string, type: 'success' | 'error' | 'info') {
 
   filterApprovals() {
     const searchLower = this.searchTerm.toLowerCase().trim();
-    console.log("searchLower", this.pendingApprovals);
+
     this.filteredApprovals = this.pendingApprovals.filter(approval => {
       // Search in multiple fields
       const searchMatches = !searchLower || [
@@ -250,14 +250,12 @@ showNotification(message: string, type: 'success' | 'error' | 'info') {
 
   viewDetails(email: string) {
     // TODO: Implement view details logic
-    console.log('Viewing details for:', email);
   }
 
   fetchUsers(): void {
     this.isLoading = true;
     this.userobserv = this.share.getUsers().subscribe({
       next: (response: any) => {
-        console.log("response", response);
         this.pendingApprovals = response.unverifiedUsers.map((user: any) => ({
           name: `${user.firstName} ${user.lastName}`,
           email: user.email,

@@ -12,10 +12,8 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    console.log("guard user");
     // Check authentication
     if(localStorage.getItem('token') === null) {
-      console.log("User is not authenticated");
       this.router.navigate(['/login']);
       return false;
     }
@@ -26,7 +24,6 @@ export class AuthGuard implements CanActivate {
 
     // Check if user has the required role
     if (requiredRole && userRole !== requiredRole) {
-      console.log("User is not authenticated 222222222222");
 
       this.router.navigate([userRole?.toLowerCase() || '/login']);
             return false;

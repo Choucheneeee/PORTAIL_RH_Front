@@ -245,7 +245,6 @@ export class StatsComponent implements OnInit {
     this.isLoading = true; // Set loading to true before fetching data
     this.share.getAllRequests().subscribe({
       next: (response: any) => {
-        console.log("Response:", response);
 
         const stats = {
           documents: { pending: 0, processed: 0 },

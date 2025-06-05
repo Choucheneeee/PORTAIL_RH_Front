@@ -149,7 +149,6 @@ export class ServiceRHService {
     }
     
     const headers = new HttpHeaders().set('Authorization', `${token}`);
-    console.log("request type", type);
 
     // Determine the endpoint based on type
     let endpoint: string;

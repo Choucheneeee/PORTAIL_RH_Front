@@ -16,7 +16,6 @@ export class authAdminGuard implements CanActivate {
   ): Observable<boolean> | Promise<boolean> | boolean {
     
     if (!this.authService.isAuthenticated()) {
-      console.log("User is not authenticated admin");
       this.router.navigate(['/login']);
       return false;
     }

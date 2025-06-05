@@ -34,7 +34,7 @@ interface ColorScheme {
   selector: 'app-list-request',
   standalone: true,
   templateUrl: './request.component.html',
-  imports: [CommonModule, FormsModule, FormationComponent], // Add FormationComponent to imports
+  imports: [CommonModule, FormsModule], // Add FormationComponent to imports
   styleUrls: ['./request.component.css'],
   providers: [ SocketService, ToastrService],
   animations: [
@@ -115,7 +115,6 @@ export class ListRequestComponent implements OnInit, OnChanges, OnDestroy {
         this.document = data;
         this.filterRequests(); // Apply initial filtering
         this.isLoading = false;
-        console.log("Loaded requests:", this.document);
       },
       error: (error) => {
         this.isLoading = false;
@@ -188,7 +187,6 @@ export class ListRequestComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     this.filteredRequests = filtered;
-    console.log("this.filteredRequests", this.filteredRequests);
   }
 
   sortKey: keyof any = 'createdAt';
@@ -418,7 +416,6 @@ export class ListRequestComponent implements OnInit, OnChanges, OnDestroy {
   // Modify the updateRequest method
   updateRequest(request: any): void {
     const requestType = this.getRequestMainType(request.type);
-    console.log('Request type:', requestType);
     switch (requestType) {
       case 'Formation':
         this.router.navigate(['/collaborateur/formation', request._id], {

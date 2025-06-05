@@ -14,7 +14,6 @@ export class NotAuthGuard implements CanActivate {
     // Check if authenticated
     if (this.authService.isAuthenticated()) {
       const role = getRoleFromToken();
-      console.log("User is authenticated 44", role);
       // Redirect based on user role
       switch(role?.toLowerCase()) {
         case 'admin':

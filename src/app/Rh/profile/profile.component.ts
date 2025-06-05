@@ -114,7 +114,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log("cor")
     this.searchUserSubscription = this.share.searchUserByToken().subscribe(
       (data) => {
         if (data) {
@@ -122,7 +121,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
           this.initializeForm(); // Déplacer l'initialisation du formulaire ici
           this.initializeImage();
           this.cdr.detectChanges();
-          console.log("all info", this.allinfo);
         } else {
           console.warn('User data is empty');
         }
@@ -423,11 +421,8 @@ export class ProfileComponent implements OnInit, AfterViewInit {
     }
   
     // Log the form data to verify content
-    formData.forEach((value, key) => {
-      console.log(`${key}: ${value}`);
-    });
+    
 
-    console.log('Form data:', formData);
   
     this.share.updateEmployee(this.allinfo._id, formData).subscribe({
       next: (response: any) => {
@@ -579,7 +574,6 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       }
     }
   
-    console.log("Form initialized with data:", this.userForm.getRawValue());
   }
 
   formatRIB() {

@@ -139,7 +139,6 @@ export class DocumentComponent implements OnInit {
     this.isLoading = true;
     this.share.getDocumentById(id).subscribe({
       next: (document: any) => {
-        console.log('Document details:', document);
 
         this.documentForm.patchValue({
           documentType: document.type,

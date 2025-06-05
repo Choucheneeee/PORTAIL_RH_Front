@@ -47,7 +47,9 @@ export class NavbarComponent {
         this.showNotification(data.message);
       });
   }
-
+  profile(){
+    this.router.navigate(['rh/profile'])
+  }
   showNotification(message: string) {
     this.alertMessage = message;
     this.showAlert = true;
@@ -142,7 +144,6 @@ export class NavbarComponent {
         state: { welcomeMessage: 'Vous avez été déconnecté avec succès.' } 
       });
       this.logoutSubscription=this.share.logout().subscribe((res:any)=>{
-        console.log(res);
         this.logoutSubscription.unsubscribe();
         
       })

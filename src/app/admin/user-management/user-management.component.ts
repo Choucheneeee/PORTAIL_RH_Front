@@ -73,7 +73,6 @@ export class UserManagementComponent implements OnInit {
     this.isLoading = true;
     this.userobserv = this.share.getUsers().subscribe({
       next: (response:any) => {
-        console.log("response", response);
         this.users =[
           ...response.collaborator.map((user:any) => ({
             ...user,
@@ -152,8 +151,6 @@ export class UserManagementComponent implements OnInit {
   getTabCount(tab: TabType): number {
     
     if (tab === 'all'){
-      console.log("tab", tab);
-      console.log("this.users.length", this.users);
       return this.users.filter(user => user.isApproved===true).length;
       
     }
@@ -189,7 +186,6 @@ export class UserManagementComponent implements OnInit {
       // Call your service to add the user
       this.share.addUser(userData).subscribe({
         next: (response:any) => {
-          console.log('User added successfully:', response);
           this.toggleAddUserForm();
           this.fetchUsers(); // Refresh the user list
           this.isLoading = false;
@@ -220,7 +216,6 @@ export class UserManagementComponent implements OnInit {
 
 // Add this method to update user role
 updateUserRole(userId: string): void {
-  console.log("user", userId);
 
   const user = this.users.find(u => u._id === userId);
   if (!user) return;
