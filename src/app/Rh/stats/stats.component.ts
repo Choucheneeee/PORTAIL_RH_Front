@@ -245,6 +245,7 @@ export class StatsComponent implements OnInit {
     this.isLoading = true; // Set loading to true before fetching data
     this.share.getAllRequests().subscribe({
       next: (response: any) => {
+        console.log("Response:", response);
 
         const stats = {
           documents: { pending: 0, processed: 0 },
@@ -505,7 +506,6 @@ export class StatsComponent implements OnInit {
 
   private getCategoryFromType(type: string): string {
     switch (type?.toLowerCase()) {
-      case 'attestation':
       case 'attestation':
         return 'documents';
       case 'attestation_de_stage':
