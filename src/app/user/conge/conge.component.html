@@ -39,11 +39,11 @@
               <select formControlName="type"
                 class="w-full px-3 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
                 <option value="" disabled selected>Sélectionnez le type de congé</option>
-                <option value="annuel">Congé annuel</option>
+                <option value="annuel" >Congé annuel</option>
                 <option value="maladie">Congé maladie</option>
-                <option value="maternité">Congé maternité</option>
+                <option value="maternité" *ngIf="sexe=='femme'">Congé maternité</option>
                 <option value="sans_solde">Congé sans solde</option>
-                <option value="paternité">Congé paternité</option>
+                <option value="paternité"*ngIf="sexe=='homme'" >Congé paternité</option>
               </select>
             </div>
 
@@ -77,31 +77,31 @@
             <!-- Annual Leave -->
             <div class="flex justify-between items-center" title="Minimum 12 jours (1 jour/mois), augmente avec l'ancienneté">
               <span class="text-sm text-gray-600">Congé annuel</span>
-              <span class="text-sm font-medium text-gray-900">12-24 jours</span>
+              <span class="text-sm font-medium text-gray-900">{{annuel}}/24 jours</span>
             </div>
       
             <!-- Sick Leave -->
             <div class="flex justify-between items-center" title="Jusqu'à 180 jours/an à 67-50% du salaire">
               <span class="text-sm text-gray-600">Congé maladie</span>
-              <span class="text-sm font-medium text-gray-900">180 jours</span>
+              <span class="text-sm font-medium text-gray-900">{{maladie}}180 jours</span>
             </div>
       
             <!-- Maternity Leave -->
             <div class="flex justify-between items-center" title="90 jours à plein salaire (secteur privé)">
               <span class="text-sm text-gray-600">Congé maternité</span>
-              <span class="text-sm font-medium text-gray-900">90 jours</span>
+              <span class="text-sm font-medium text-gray-900">{{maternite}}/90 jours</span>
             </div>
       
             <!-- Paternity Leave -->
             <div class="flex justify-between items-center" title="7 jours minimum depuis 2024">
               <span class="text-sm text-gray-600">Congé paternité</span>
-              <span class="text-sm font-medium text-gray-900">7 jours</span>
+              <span class="text-sm font-medium text-gray-900">{{paternite}}/7 jours</span>
             </div>
       
             <!-- Special Leaves -->
             <div class="flex justify-between items-center" title="Mariage (3j), Décès (4j), Pèlerinage (1x carrière)">
-              <span class="text-sm text-gray-600">Congés spéciaux</span>
-              <span class="text-sm font-medium text-gray-900">3-4 jours</span>
+              <span class="text-sm text-gray-600">Congés sans solde</span>
+              <span class="text-sm font-medium text-gray-900">{{sans_solde}}/4</span>
             </div>
           </div>
         </div>

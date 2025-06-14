@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 import { SocketService } from '../../service/socket.service';
 
 export interface Notification {
-  id?: string;
+  _id?: string;
   message: string;
   timestamp: Date;
   read: boolean;
@@ -69,6 +69,14 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.setupNotificationListener();
   }
 
+  delete(id: any) {
+    console.log(id);
+    this.share.deletenotif(id).subscribe((res:any)=>{
+      this.getnotifications();
+      this.cdRef.detectChanges();  
+    })
+
+  }
   private setupNotificationListener(): void {
     this.notifSubscription = this.socketService
       .on('notif')

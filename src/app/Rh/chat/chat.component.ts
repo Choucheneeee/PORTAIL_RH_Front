@@ -39,6 +39,7 @@ export class ChatComponent implements AfterViewChecked {
   searchTerm = '';
   selectedUser: ExtendedUser | null = null;
   isSending = false;
+  myId=localStorage.getItem('loggedInUserId');
 
   private userSubscription!: Subscription;
   private socketSubscriptions = new Subscription();
@@ -224,7 +225,7 @@ get filteredMessages(): Message[] {
   }
 
   // MSG
-  displayedUsersCount = 10;
+  displayedUsersCount = 500;
   private scrollDebounceTime = 200;
   prevSearchTerm = '';
   get filteredUsers(): ExtendedUser[] {
@@ -236,7 +237,7 @@ get filteredMessages(): Message[] {
     
     // Reset displayed count when search changes
     if (this.prevSearchTerm !== term) {
-      this.displayedUsersCount = 5;
+      this.displayedUsersCount = 500;
       this.prevSearchTerm = term;
     }
     return filtered;

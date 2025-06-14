@@ -1,74 +1,73 @@
 <div class="card">
-    <div class="card-header">
-      <h2 class="card-title">Logs et activités</h2>
-      <div class="header-actions">
-        <button class="btn btn-secondary" >
-          <i class="fas fa-download"></i> Exporter
-        </button>
-        <button class="btn btn-primary" >
-          <i class="fas fa-sync"></i> Actualiser
-        </button>
-      </div>
-    </div>
-  
-    <div class="card-body">
-      <div class="filters">
-        <div class="form-group">
-          <label for="dateRange">Période</label>
-          <select id="dateRange" class="form-control" >
-            <option value="today">Aujourd'hui</option>
-            <option value="week">7 derniers jours</option>
-            <option value="month">30 derniers jours</option>
-            <option value="custom">Personnalisée</option>
-          </select>
-        </div>
-        
-        <div class="form-group" >
-          <label for="startDate">Du</label>
-          <input type="date" id="startDate" class="form-control" >
-        </div>
-        
-        <div class="form-group">
-          <label for="endDate">Au</label>
-          <input type="date" id="endDate" class="form-control" >
-        </div>
-        
-        <div class="form-group">
-          <label for="eventType">Type d'événement</label>
-          <select id="eventType" class="form-control">
-            <option value="all">Tous</option>
-            <option value="Login">Connexion</option>
-            <option value="user">Gestion utilisateurs</option>
-            <option value="system">Système</option>
-          </select>
-        </div>
-        
-        <button class="btn btn-primary" >Appliquer</button>
-      </div>
-  
-    
-  
-      <table>
-        <thead>
-          <tr>
-            <th>Date & Heure</th>
-            <th>Utilisateur</th>
-            <th>Type</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let log of logEntries">
-            <td>{{ log.createdAt | date:'dd/MM/yyyy HH:mm:ss' }}</td>
-            <td>{{ log.user }}</td>
-            <td>{{ log.type }}</td>
-            <td>{{ log.description }}</td>
-          </tr>
-        </tbody>
-      </table>
-  
-      
+  <div class="card-header">
+    <h2 class="card-title">Logs et activités</h2>
+    <div class="header-actions">
+      <button class="btn btn-primary" (click)="Actualiser()">
+        <i class="fas fa-sync"></i> Actualiser
+      </button>
     </div>
   </div>
+
+  <div class="card-body">
+    <table class="w-full">
+      <thead>
+        <tr class="border-b">
+          <th (click)="toggleSort('createdAt')" class="cursor-pointer p-2 text-left hover:bg-gray-50">
+            <div class="flex items-center">
+              Date & Heure
+              <span class="ml-2">
+                <i class="fas" 
+                   [class.fa-sort-up]="sortField === 'createdAt' && sortDirection === 'asc'"
+                   [class.fa-sort-down]="sortField === 'createdAt' && sortDirection === 'desc'"
+                   [class.fa-sort]="sortField !== 'createdAt'"></i>
+              </span>
+            </div>
+          </th>
+          <th (click)="toggleSort('user')" class="cursor-pointer p-2 text-left hover:bg-gray-50">
+            <div class="flex items-center">
+              Utilisateur
+              <span class="ml-2">
+                <i class="fas"
+                   [class.fa-sort-up]="sortField === 'user' && sortDirection === 'asc'"
+                   [class.fa-sort-down]="sortField === 'user' && sortDirection === 'desc'"
+                   [class.fa-sort]="sortField !== 'user'"></i>
+              </span>
+            </div>
+          </th>
+          <th (click)="toggleSort('type')" class="cursor-pointer p-2 text-left hover:bg-gray-50">
+            <div class="flex items-center">
+              Type
+              <span class="ml-2">
+                <i class="fas"
+                   [class.fa-sort-up]="sortField === 'type' && sortDirection === 'asc'"
+                   [class.fa-sort-down]="sortField === 'type' && sortDirection === 'desc'"
+                   [class.fa-sort]="sortField !== 'type'"></i>
+              </span>
+            </div>
+          </th>
+          <th (click)="toggleSort('description')" class="cursor-pointer p-2 text-left hover:bg-gray-50">
+            <div class="flex items-center">
+              Description
+              <span class="ml-2">
+                <i class="fas"
+                   [class.fa-sort-up]="sortField === 'description' && sortDirection === 'asc'"
+                   [class.fa-sort-down]="sortField === 'description' && sortDirection === 'desc'"
+                   [class.fa-sort]="sortField !== 'description'"></i>
+              </span>
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of logEntries" class="border-b hover:bg-gray-50">
+          <td class="p-2">{{ log.createdAt | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+          <td class="p-2">{{ log.user }}</td>
+          <td class="p-2">{{ log.type }}</td>
+          <td class="p-2">{{ log.description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
   
   <!-- Log Details Modal -->

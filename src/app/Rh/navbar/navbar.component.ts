@@ -50,6 +50,14 @@ export class NavbarComponent {
   profile(){
     this.router.navigate(['rh/myprofile'])
   }
+  delete(id: string) {
+    console.log(id);
+    this.share.deletenotif(id).subscribe((res:any)=>{
+      this.getnotifications();
+      this.cdRef.detectChanges();  
+    })
+
+  }
   showNotification(message: string) {
     this.alertMessage = message;
     this.showAlert = true;

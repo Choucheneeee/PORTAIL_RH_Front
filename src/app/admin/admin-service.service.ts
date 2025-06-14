@@ -20,6 +20,15 @@ export class AdminServiceService {
     const headers = new HttpHeaders().set('Authorization', `${token}`);
     return this.http.get(`${this.apiUrl}/admin/allusers`, { headers });
   }
+  deletenotif(id: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.warn('Token not found');
+      return new Observable(); // Return an empty observable to avoid further errors
+    }
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.http.delete(`${this.apiUrl}/notification/delete/${id}`, { headers });
+  }
   getData():Observable<any> {
     const token = localStorage.getItem('token');
     if (!token) {

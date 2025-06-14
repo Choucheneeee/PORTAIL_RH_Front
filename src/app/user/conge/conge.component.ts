@@ -23,6 +23,12 @@ export class CongeComponent implements OnInit {
   leaveForm: FormGroup;
   isLoading = false;
   isEditMode = false;
+  annuel: number = 0;
+  maladie: number = 0;
+  maternite: number = 0;
+  paternite: number = 0;
+  sans_solde :number = 0;
+  sexe :string = '';
   congeId: string | null = null;
   private congeObs!: Subscription;
 
@@ -41,6 +47,7 @@ export class CongeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.soldeconge()
     // Get the ID from route parameters
     this.route.params.subscribe(params => {
       this.congeId = params['id'];
@@ -52,6 +59,23 @@ export class CongeComponent implements OnInit {
           this.loadCongeDetails(this.congeId);
         }
       });
+    });
+  }
+  soldeconge(): void {
+    this.share.getsoldeconge().subscribe({
+      next: (solde: any) => {
+        this.annuel = solde.annuel;
+        this.maladie = solde.maladie;
+        this.maternite = solde.maternite;
+        this.paternite = solde.paternite;
+        this.sans_solde = solde.sans_solde;
+        this.sexe = solde.sexe;
+        
+      },
+      error: (error:any) => {
+        alert('Error loading solde');
+        console.error(error);
+      }
     });
   }
 

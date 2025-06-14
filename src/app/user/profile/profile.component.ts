@@ -134,8 +134,10 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         velocityFilterWeight: 0.7,
         minWidth: 0.5,
         maxWidth: 2.5,
-        throttle: 16 // Increase responsiveness
+        throttle: 16, // Increase responsiveness
+        dotSize: 2 // Add this line to make the cursor more visible
       });
+      
       
       // Load existing signature if available
       this.loadExistingSignature();
@@ -320,7 +322,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       'countryCode': 'personalInfo.countryCode',
       'address': 'personalInfo.address',
       'birthDate': 'personalInfo.birthDate',
-      
+      'sexe':'personalInfo.sexe',
       // Professional info
       'department': 'professionalInfo.department',
       'position': 'professionalInfo.position',
@@ -421,6 +423,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
       ]],
       firstName: [this.allinfo.firstName ?? '', [Validators.required]],
       lastName: [this.allinfo.lastName ?? '', [Validators.required]],
+      
       countryCode: [this.allinfo.personalInfo?.countryCode || 'TN', [Validators.required]],
       phone: [this.allinfo.personalInfo?.phone || '', [
         Validators.required,
@@ -444,7 +447,7 @@ export class ProfileComponent implements OnInit, AfterViewInit {
         [Validators.required, minimumAgeValidator(18)]
       ],
       department: [this.allinfo.professionalInfo?.department ?? '', [Validators.required]],
-      signature:[this.allinfo.signature ?? null ],
+      sexe: [this.allinfo.personalInfo?.sexe ?? '', [Validators.required]],
       position: [{ 
         value: this.allinfo.professionalInfo?.position ?? '', 
         disabled: !this.allinfo.professionalInfo?.department

@@ -29,6 +29,18 @@ export class EmployeServiceService {
   addNewStudent(profile: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/auth/register`, profile);
   }
+
+  deletenotif(id: string): Observable<any> {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.warn('Token not found');
+      return new Observable(); // Return an empty observable to avoid further errors
+    }
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.http.delete(`${this.apiUrl}/notification/delete/${id}`, { headers });
+  }
+
+  
   getFormationById(id: string): Observable<any> {
     const token = localStorage.getItem('token');
     if (!token) {
@@ -46,6 +58,16 @@ export class EmployeServiceService {
     }
     const headers = new HttpHeaders().set('Authorization', `${token}`);
     return this.http.get(`${this.apiUrl}/conge/${id}`, { headers });  
+  }
+  getsoldeconge():Observable<any>{
+    const token = localStorage.getItem('token');
+    if (!token) {
+      console.warn('Token not found');
+      return of(null); // Prevent app crash
+    }
+    const id=localStorage.getItem('loggedInUserId');
+    const headers = new HttpHeaders().set('Authorization', `${token}`);
+    return this.http.get(`${this.apiUrl}/conge/solde/${id}`, { headers });
   }
   updateConge(id: string, form: any): Observable<any> {
     const token = localStorage.getItem('token');

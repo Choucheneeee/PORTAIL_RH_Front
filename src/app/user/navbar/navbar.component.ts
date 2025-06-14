@@ -70,6 +70,7 @@ export class NavbarComponent implements OnInit {
       clearTimeout(this.alertTimeout);
     }
     
+    
     // Auto hide after 5 seconds
     this.alertTimeout = setTimeout(() => {
       this.showAlert = false;
@@ -82,6 +83,14 @@ export class NavbarComponent implements OnInit {
     this.getnotifications()
 
     
+  }
+  delete(id: string) {
+    console.log(id);
+    this.share.deletenotif(id).subscribe((res:any)=>{
+      this.getnotifications();
+      this.cdRef.detectChanges();  
+    })
+
   }
    private playNotificationSound() {
     try {
